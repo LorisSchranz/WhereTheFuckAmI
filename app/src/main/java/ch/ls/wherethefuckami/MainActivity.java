@@ -1,11 +1,13 @@
 package ch.ls.wherethefuckami;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -68,5 +70,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Give me Location Permissions", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    void getToMap(){
+        startActivity(new Intent(MainActivity.this, MapActivity.class));
     }
 }
