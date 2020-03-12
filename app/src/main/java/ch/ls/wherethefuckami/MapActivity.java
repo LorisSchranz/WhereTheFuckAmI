@@ -108,7 +108,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     }
     public void extendInformation(View view) {
         // Gets linearlayout
-        RelativeLayout layout = findViewById(R.id.information);
+        TextView layout = findViewById(R.id.information);
         // Gets the layout params that will allow you to resize the layout
         ViewGroup.LayoutParams params = layout.getLayoutParams();
         // Changes the height and width to the specified *pixels*
