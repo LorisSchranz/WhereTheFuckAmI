@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WhereTheFuckAmI</string>
     <string name="title_activity_maps">Map</string>
+    <string name="get_to_map">Get to Map</string>
 </resources>

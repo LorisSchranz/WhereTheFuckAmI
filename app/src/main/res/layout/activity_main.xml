@@ -7,6 +7,6 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="562dp"
-        android:text="Get to Map"
-        android:onClick="getToMap"/>
+        android:onClick="getToMap"
+        android:text="@string/get_to_map" />
 </LinearLayout>
