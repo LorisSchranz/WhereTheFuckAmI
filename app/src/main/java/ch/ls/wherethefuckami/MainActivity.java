@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,14 +20,13 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import ch.ls.wherethefuckami.Models.CurrentLocation;
 
 public class MainActivity extends AppCompatActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
-    private ArrayList<CurrentLocation> locations = new ArrayList<CurrentLocation>();
+    public ArrayList<CurrentLocation> locations = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,18 +52,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
-                Double latitude = locationResult.getLastLocation().getLatitude();
-                Double longitude = locationResult.getLastLocation().getLongitude();
+                double latitude = locationResult.getLastLocation().getLatitude();
+                double longitude = locationResult.getLastLocation().getLongitude();
                 CurrentLocation test = new CurrentLocation(longitude, latitude);
-<<<<<<< HEAD
-=======
+
                 locations.add(0,test);
-<<<<<<< HEAD
-=======
-                Log.d("myTest", "test" + locations.get(0).Long + "test2" + locations.get(0).Lat);
->>>>>>> ed4a542244f5e3467bb487a35a7d0b6a2fb80782
-                Log.d("myLog", "Lat is: " + locationResult.getLastLocation().getLatitude() + "Long is:" + locationResult.getLastLocation().getLongitude());
->>>>>>> 486ddc4a6830438f18a71c6ef8e6f0dac2baf4c0
             }
         };
         requestLocation();

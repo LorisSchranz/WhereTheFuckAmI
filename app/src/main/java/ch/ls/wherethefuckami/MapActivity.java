@@ -1,22 +1,13 @@
 package ch.ls.wherethefuckami;
 
-<<<<<<< HEAD
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-=======
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
-<<<<<<< HEAD
-=======
-import android.util.Log;
->>>>>>> ed4a542244f5e3467bb487a35a7d0b6a2fb80782
->>>>>>> 486ddc4a6830438f18a71c6ef8e6f0dac2baf4c0
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -116,7 +107,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     }
     public void extendInformation(View view) {
         // Gets linearlayout
-        android.widget.LinearLayout layout = findViewById(R.id.information);
+        RelativeLayout layout = findViewById(R.id.information);
         // Gets the layout params that will allow you to resize the layout
         ViewGroup.LayoutParams params = layout.getLayoutParams();
         // Changes the height and width to the specified *pixels*
