@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -19,7 +18,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
@@ -29,7 +27,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private GoogleMap mMap;
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
-    private ArrayList<CurrentLocation> locations = new ArrayList<CurrentLocation>();
+    private ArrayList<CurrentLocation> locations = new ArrayList<>();
+    boolean firstTime = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +59,13 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
-                Double latitude = locationResult.getLastLocation().getLatitude();
-                Double longitude = locationResult.getLastLocation().getLongitude();
+                double latitude = locationResult.getLastLocation().getLatitude();
+                double longitude = locationResult.getLastLocation().getLongitude();
                 CurrentLocation test = new CurrentLocation(longitude, latitude);
                 locations.set(0, test);
-                setLocation();
+                if(firstTime){
+                    setLocation();
+                }
             }
         };
         requestLocation();
@@ -85,9 +86,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         mMap.addMarker(new MarkerOptions().position(currentLocation).title("Marker at your position"));
         Log.d("just a test", String.valueOf(mMap.getMyLocation()));
          */
+
         LatLng currentLocation = new LatLng(locations.get(0).getLat(), locations.get(0).getLong());
-        mMap.setMyLocationEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+        firstTime = false;
     }
 
     @Override
@@ -95,8 +97,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         mMap = googleMap;
 
         // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng horgen = new LatLng(47.260345, 8.595858);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(horgen));
+        mMap.setMyLocationEnabled(true);
     }
 }

@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 Double longitude = locationResult.getLastLocation().getLongitude();
                 CurrentLocation test = new CurrentLocation(longitude, latitude);
                 locations.add(0,test);
-                Log.d("myTest", "test" + locations.get(0).Long + "test2" + locations.get(0).Lat);
-                Log.d("myLog", "Lat is: " + locationResult.getLastLocation().getLatitude() + "Long is:" + locationResult.getLastLocation().getLongitude());
             }
         };
         requestLocation();
