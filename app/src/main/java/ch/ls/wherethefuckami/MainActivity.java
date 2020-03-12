@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,13 +21,14 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import ch.ls.wherethefuckami.Models.CurrentLocation;
 
 public class MainActivity extends AppCompatActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
-    public ArrayList<CurrentLocation> locations = new ArrayList<CurrentLocation>();
+    private ArrayList<CurrentLocation> locations = new ArrayList<CurrentLocation>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 Double latitude = locationResult.getLastLocation().getLatitude();
                 Double longitude = locationResult.getLastLocation().getLongitude();
                 CurrentLocation test = new CurrentLocation(longitude, latitude);
-                locations = locations.add(test);
+                locations.add(0,test);
+                Log.d("myTest", "test" + locations.get(0).Long + "test2" + locations.get(0).Lat);
                 Log.d("myLog", "Lat is: " + locationResult.getLastLocation().getLatitude() + "Long is:" + locationResult.getLastLocation().getLongitude());
             }
         };
