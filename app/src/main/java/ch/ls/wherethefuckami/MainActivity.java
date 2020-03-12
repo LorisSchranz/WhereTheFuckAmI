@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -20,12 +21,18 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
+import java.util.ArrayList;
+
+import ch.ls.wherethefuckami.Models.CurrentLocation;
+
 public class MainActivity extends AppCompatActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
+    public ArrayList<CurrentLocation> locations = new ArrayList<CurrentLocation>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -47,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
+                Double latitude = locationResult.getLastLocation().getLatitude();
+                Double longitude = locationResult.getLastLocation().getLongitude();
+                CurrentLocation test = new CurrentLocation(longitude, latitude);
+                locations = locations.add(test);
                 Log.d("myLog", "Lat is: " + locationResult.getLastLocation().getLatitude() + "Long is:" + locationResult.getLastLocation().getLongitude());
             }
         };
@@ -72,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void getToMap(){
-        startActivity(new Intent(MainActivity.this, MapActivity.class));
+    public void getToMap(View view) {
+        startActivity(new Intent(this, MapActivity.class));
     }
 }
