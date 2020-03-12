@@ -11,15 +11,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        >
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyA5kbGAD2y3qI-FvVeIN669FZaOSz0mnp4"/>
-        <activity android:name=".MainActivity">
+        <activity android:theme="@style/ToMap" android:name=".MainActivity">
+
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN"></action>
             </intent-filter>
         </activity>
-        <activity android:name=".MapActivity" />
 
     </application>
 

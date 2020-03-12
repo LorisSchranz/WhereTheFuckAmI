@@ -6,7 +6,8 @@
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="562dp"
+        android:layout_height="match_parent"
         android:onClick="getToMap"
+        android:theme="@style/ToMap"
         android:text="@string/get_to_map" />
 </LinearLayout>
