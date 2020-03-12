@@ -7,5 +7,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="ToMap">
+        <item name="colorButtonNormal">@color/getToMapButton</item>
+    </style>
+    <style name="information">
+        <item name="colorButtonNormal">@color/informationBoard</item>
+    </style>
 
 </resources>
