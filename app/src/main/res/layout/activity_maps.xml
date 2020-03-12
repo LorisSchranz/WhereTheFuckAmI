@@ -1,24 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentBottom="true"
-    android:background="#FFFFFF"
-    tools:context=".MapActivity"
-    tools:layout="@layout/activity_maps">
+    android:onClick="extendInformation"
+    android:orientation="horizontal"
+    android:theme="@style/information"
+    android:visibility="visible">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MapActivity"
+        tools:layout="@layout/activity_maps" />
 
     <RelativeLayout
-        android:id="@+id/information"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:gravity="bottom"
-        android:onClick="extendInformation"
-        android:theme="@style/information"
-        android:visibility="visible" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="#8C8C8C">
 
-</fragment>
+        <TextView
+            android:id="@+id/information"
+            android:layout_width="4dp"
+            android:layout_height="0dp"
+            android:background="#000000"
+            android:gravity="center|top"
+            android:paddingTop="5dp"/>
+        <TextView
+            android:id="@+id/info1"
+            android:width="30dp"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/info2"
+            android:width="30dp"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/info1"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/info3"
+            android:width="30dp"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/info2"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/info4"
+            android:width="30dp"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@id/info1"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/info5"
+            android:width="30dp"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@id/info2"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/info6"
+            android:width="30dp"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@id/info3"
+            android:visibility="invisible" />
+    </RelativeLayout>
+</RelativeLayout>
 

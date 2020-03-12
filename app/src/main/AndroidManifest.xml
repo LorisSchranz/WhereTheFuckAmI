@@ -20,7 +20,7 @@
                 <action android:name="android.intent.action.MAIN"></action>
             </intent-filter>
         </activity>
-        <activity android:name=".MapActivity" />
+        <activity android:theme="@style/information" android:name=".MapActivity" />
 
     </application>
 

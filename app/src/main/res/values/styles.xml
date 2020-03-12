@@ -11,7 +11,7 @@
         <item name="colorButtonNormal">@color/getToMapButton</item>
     </style>
     <style name="information">
-        <item name="colorButtonNormal">@color/informationBoard</item>
+        <item name="android:color">@color/informationBoard</item>
     </style>
 
 </resources>
