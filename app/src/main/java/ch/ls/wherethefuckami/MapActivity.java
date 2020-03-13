@@ -112,20 +112,34 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         // Gets the layout params that will allow you to resize the layout
         ViewGroup.LayoutParams params = layout.getLayoutParams();
         // Changes the height and width to the specified *pixels*
-        params.height = 300;
-        layout.setLayoutParams(params);
 
         TextView view1 = findViewById(R.id.info1);
-        view1.setVisibility(View.VISIBLE);
         TextView view2 = findViewById(R.id.info2);
-        view2.setVisibility(View.VISIBLE);
         TextView view3 = findViewById(R.id.info3);
-        view3.setVisibility(View.VISIBLE);
         TextView view4 = findViewById(R.id.info4);
-        view4.setVisibility(View.VISIBLE);
         TextView view5 = findViewById(R.id.info5);
-        view5.setVisibility(View.VISIBLE);
         TextView view6 = findViewById(R.id.info6);
-        view6.setVisibility(View.VISIBLE);
+        if(view1.equals(View.INVISIBLE)){
+            params.height = 300;
+            layout.setLayoutParams(params);
+
+            view1.setVisibility(View.VISIBLE);
+            view2.setVisibility(View.VISIBLE);
+            view3.setVisibility(View.VISIBLE);
+            view4.setVisibility(View.VISIBLE);
+            view5.setVisibility(View.VISIBLE);
+            view6.setVisibility(View.VISIBLE);
+        }else{
+            params.height = 20;
+            layout.setLayoutParams(params);
+
+            view1.setVisibility(View.INVISIBLE);
+            view2.setVisibility(View.INVISIBLE);
+            view3.setVisibility(View.INVISIBLE);
+            view4.setVisibility(View.INVISIBLE);
+            view5.setVisibility(View.INVISIBLE);
+            view6.setVisibility(View.INVISIBLE);
+        }
+
     }
 }

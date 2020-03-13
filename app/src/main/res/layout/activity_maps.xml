@@ -5,7 +5,6 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="extendInformation"
     android:orientation="horizontal"
     android:theme="@style/information"
     android:visibility="visible">
@@ -28,6 +27,7 @@
 
         <TextView
             android:id="@+id/information"
+            android:onClick="extendInformation"
             android:layout_width="100dp"
             android:layout_height="5dp"
             android:background="#000000"
