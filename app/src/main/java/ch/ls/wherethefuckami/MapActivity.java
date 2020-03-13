@@ -76,7 +76,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 super.onLocationResult(locationResult);
                 double speed = locationResult.getLastLocation().getSpeed();
                 double roundedSpeed = Math.round(speed * 100.0) / 100.0;
-                if(roundedSpeed >= 5.0){
+                if(roundedSpeed >= 10.0){
                     if (Build.VERSION.SDK_INT >= 26) {
                         vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
                     } else {
