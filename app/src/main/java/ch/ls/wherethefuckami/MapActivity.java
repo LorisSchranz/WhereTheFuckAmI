@@ -25,20 +25,20 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-import ch.ls.wherethefuckami.Models.CurrentLocation;
+import ch.ls.wherethefuckami.Models.Information;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
-    private ArrayList<CurrentLocation> locations = new ArrayList<>();
+    private ArrayList<Information> locations = new ArrayList<>();
     boolean firstTime = true;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        locations.add(new CurrentLocation(0,0));
+        locations.add(new Information(0,0, 0));
         setContentView(R.layout.activity_maps);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -63,10 +63,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
+                double speed = locationResult.getLastLocation().getSpeed();
                 super.onLocationResult(locationResult);
                 double latitude = locationResult.getLastLocation().getLatitude();
                 double longitude = locationResult.getLastLocation().getLongitude();
-                CurrentLocation test = new CurrentLocation(longitude, latitude);
+                Information test = new Information(longitude, latitude, speed);
                 locations.set(0, test);
                 if(firstTime){
                     setLocation();
@@ -100,17 +101,19 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney, Australia, and move the camera.
         LatLng horgen = new LatLng(47.260345, 8.595858);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(horgen));
         mMap.setMyLocationEnabled(true);
     }
+    public void informationBox(){
+
+    }
     public void extendInformation(View view) {
         // Gets linearlayout
         TextView layout = findViewById(R.id.information);
+        RelativeLayout box = (RelativeLayout) layout.getParent();
         // Gets the layout params that will allow you to resize the layout
-        ViewGroup.LayoutParams params = layout.getLayoutParams();
+        ViewGroup.LayoutParams params = box.getLayoutParams();
         // Changes the height and width to the specified *pixels*
 
         TextView view1 = findViewById(R.id.info1);
@@ -119,19 +122,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         TextView view4 = findViewById(R.id.info4);
         TextView view5 = findViewById(R.id.info5);
         TextView view6 = findViewById(R.id.info6);
-        if(view1.equals(View.INVISIBLE)){
-            params.height = 300;
-            layout.setLayoutParams(params);
-
-            view1.setVisibility(View.VISIBLE);
-            view2.setVisibility(View.VISIBLE);
-            view3.setVisibility(View.VISIBLE);
-            view4.setVisibility(View.VISIBLE);
-            view5.setVisibility(View.VISIBLE);
-            view6.setVisibility(View.VISIBLE);
-        }else{
-            params.height = 20;
-            layout.setLayoutParams(params);
+        if(view1.getVisibility() == View.VISIBLE){
+            params.height = 60;
+            box.setLayoutParams(params);
 
             view1.setVisibility(View.INVISIBLE);
             view2.setVisibility(View.INVISIBLE);
@@ -139,6 +132,17 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             view4.setVisibility(View.INVISIBLE);
             view5.setVisibility(View.INVISIBLE);
             view6.setVisibility(View.INVISIBLE);
+
+        }else{
+            params.height = 500;
+            box.setLayoutParams(params);
+
+            view1.setVisibility(View.VISIBLE);
+            view2.setVisibility(View.VISIBLE);
+            view3.setVisibility(View.VISIBLE);
+            view4.setVisibility(View.VISIBLE);
+            view5.setVisibility(View.VISIBLE);
+            view6.setVisibility(View.VISIBLE);
         }
 
     }

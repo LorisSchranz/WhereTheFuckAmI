@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -22,17 +21,17 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
 
-import ch.ls.wherethefuckami.Models.CurrentLocation;
+import ch.ls.wherethefuckami.Models.Information;
 
 public class MainActivity extends Activity {
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
-    public ArrayList<CurrentLocation> locations = new ArrayList<>();
+    public ArrayList<Information> locations = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        locations.add(0, new CurrentLocation(0,0));
+        locations.add(0, new Information(0,0, 0));
         setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -54,9 +53,10 @@ public class MainActivity extends Activity {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
+                double speed = locationResult.getLastLocation().getSpeed();
                 double latitude = locationResult.getLastLocation().getLatitude();
                 double longitude = locationResult.getLastLocation().getLongitude();
-                CurrentLocation test = new CurrentLocation(longitude, latitude);
+                Information test = new Information(longitude, latitude, speed);
 
                 locations.set(0,test);
             }

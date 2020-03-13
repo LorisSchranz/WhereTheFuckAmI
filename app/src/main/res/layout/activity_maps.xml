@@ -18,8 +18,10 @@
         tools:layout="@layout/activity_maps" />
 
     <RelativeLayout
+        android:id="@+id/informations"
+        android:onClick="extendInformation"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -29,7 +31,7 @@
             android:id="@+id/information"
             android:onClick="extendInformation"
             android:layout_width="100dp"
-            android:layout_height="5dp"
+            android:layout_height="12dp"
             android:background="#000000"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"/>
