@@ -1,6 +1,7 @@
 package ch.ls.wherethefuckami;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -23,15 +24,16 @@ import java.util.ArrayList;
 
 import ch.ls.wherethefuckami.Models.CurrentLocation;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
     public ArrayList<CurrentLocation> locations = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
+        locations.add(0, new CurrentLocation(0,0));
+        setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 //request Location
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 double longitude = locationResult.getLastLocation().getLongitude();
                 CurrentLocation test = new CurrentLocation(longitude, latitude);
 
-                locations.add(0,test);
+                locations.set(0,test);
             }
         };
         requestLocation();
