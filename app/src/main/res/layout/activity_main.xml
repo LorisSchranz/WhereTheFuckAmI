@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/loading_screen"
+        />
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:onClick="getToMap"
         android:text="@string/get_to_map"
-        android:theme="@style/ToMap" />
+        android:theme="@style/ToMap"
+        />
 </LinearLayout>
