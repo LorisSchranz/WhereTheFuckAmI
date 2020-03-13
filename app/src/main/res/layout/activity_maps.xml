@@ -19,69 +19,75 @@
 
     <RelativeLayout
         android:id="@+id/informations"
-        android:onClick="extendInformation"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:background="#8C8C8C">
+        android:background="#8C8C8C"
+        android:onClick="extendInformation">
 
         <TextView
             android:id="@+id/information"
-            android:onClick="extendInformation"
             android:layout_width="100dp"
             android:layout_height="12dp"
-            android:background="#000000"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:background="#000000"
+            android:onClick="extendInformation" />
+
         <TextView
             android:id="@+id/info1"
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:visibility="invisible"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/info2"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_below="@id/info1"
-            android:visibility="invisible"
-            />
+            android:gravity="center"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/info3"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_below="@id/info2"
+            android:gravity="center"
             android:visibility="invisible" />
 
         <TextView
             android:id="@+id/info4"
-            android:layout_marginTop="30dp"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
             android:layout_toEndOf="@id/info1"
+            android:gravity="center"
             android:visibility="invisible" />
 
         <TextView
             android:id="@+id/info5"
-            android:layout_marginStart="20dp"
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:layout_toEndOf="@id/info2"
             android:layout_below="@id/info4"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/info2"
+            android:gravity="center"
             android:visibility="invisible" />
 
         <TextView
             android:id="@+id/info6"
-            android:layout_marginStart="20dp"
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:layout_toEndOf="@id/info3"
             android:layout_below="@id/info5"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/info3"
+            android:gravity="center"
             android:visibility="invisible" />
     </RelativeLayout>
 </RelativeLayout>

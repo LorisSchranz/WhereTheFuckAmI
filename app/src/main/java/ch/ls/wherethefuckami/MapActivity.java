@@ -5,11 +5,14 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -32,6 +35,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
     private ArrayList<Information> locations = new ArrayList<>();
+    private Vibrator vibrator;
     boolean firstTime = true;
 
 
@@ -61,13 +65,34 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     void startService() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onLocationResult(LocationResult locationResult) {
-                double speed = locationResult.getLastLocation().getSpeed();
                 super.onLocationResult(locationResult);
+                double speed = locationResult.getLastLocation().getSpeed();
+                double roundedSpeed = Math.round(speed * 100.0) / 100.0;
+                if(roundedSpeed >= 5.0){
+                    if (Build.VERSION.SDK_INT >= 26) {
+                        vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
+                    } else {
+                        vibrator.vibrate(200);
+                    }
+                }
                 double latitude = locationResult.getLastLocation().getLatitude();
                 double longitude = locationResult.getLastLocation().getLongitude();
-                Information test = new Information(longitude, latitude, speed);
+                Information test = new Information(longitude, latitude, roundedSpeed);
+                TextView view1 = findViewById(R.id.info1);
+                TextView view2 = findViewById(R.id.info2);
+                TextView view3 = findViewById(R.id.info3);
+                TextView view4 = findViewById(R.id.info4);
+                TextView view5 = findViewById(R.id.info5);
+                TextView view6 = findViewById(R.id.info6);
+                view1.setText("Longitude: ");
+                view2.setText("Latitude: ");
+                view3.setText("Speed: ");
+                view4.setText(locations.get(0).getLong().toString());
+                view5.setText(locations.get(0).getLat().toString());
+                view6.setText(locations.get(0).getSpeed().toString() + "/KmH");
                 locations.set(0, test);
                 if(firstTime){
                     setLocation();
@@ -101,6 +126,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         LatLng horgen = new LatLng(47.260345, 8.595858);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(horgen));
         mMap.setMyLocationEnabled(true);
@@ -125,7 +151,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         if(view1.getVisibility() == View.VISIBLE){
             params.height = 60;
             box.setLayoutParams(params);
-
             view1.setVisibility(View.INVISIBLE);
             view2.setVisibility(View.INVISIBLE);
             view3.setVisibility(View.INVISIBLE);
@@ -136,7 +161,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         }else{
             params.height = 500;
             box.setLayoutParams(params);
-
             view1.setVisibility(View.VISIBLE);
             view2.setVisibility(View.VISIBLE);
             view3.setVisibility(View.VISIBLE);
