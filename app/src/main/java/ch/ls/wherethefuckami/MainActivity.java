@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -30,6 +33,8 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        getActionBar().setLogo(R.drawable.logo);
+        getActionBar().setDisplayUseLogoEnabled(true);
         super.onCreate(savedInstanceState);
         locations.add(0, new Information(0,0, 0));
         setContentView(R.layout.activity_main);
@@ -82,7 +87,11 @@ public class MainActivity extends Activity {
             }
         }
     }
+    public void loadingimg(){
 
+        Resources res = getResources();
+        Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.loading_screen, null);
+    }
     public void getToMap(View view) {
         startActivity(new Intent(this, MapActivity.class));
     }

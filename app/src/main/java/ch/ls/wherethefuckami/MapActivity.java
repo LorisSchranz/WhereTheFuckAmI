@@ -1,6 +1,7 @@
 package ch.ls.wherethefuckami;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,6 +42,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getActionBar().setLogo(R.drawable.logo);
+        getActionBar().setDisplayUseLogoEnabled(true);
         super.onCreate(savedInstanceState);
         locations.add(new Information(0,0, 0));
         setContentView(R.layout.activity_maps);
@@ -61,6 +64,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             startService();
         }
     }
+
+
 
     void startService() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
